@@ -1,0 +1,38 @@
+<div class="container">
+<div class="col-md-7 offset-md-3">
+    <div *ngIf="alert" class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 1%;">
+        <strong>Success!</strong> Data has been updated successfully.
+        <button (click)="closeAlert()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>    
+     <div class="card" style="margin-top: 5%;">
+     <div class="card-body">
+<h2>Update Vehicle Details</h2>
+<form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label>Category</label>
+        <select [(ngModel)]="vehicle.category" name="category" class="form-select" aria-label="Default select example" class="form-control">
+            <option value="bike">Bike</option>
+            <option value="car">Car</option>
+          </select>
+    </div>
+    <div class="form-group">
+        <label>Vehicle Number</label>
+        <input type="text" class="form-control" id="vNumber" [(ngModel)]="vehicle.vehicleNumber" name="vNumber">
+    </div>
+    <div class="form-group">
+        <label>UserName</label>
+        <input type="text" class="form-control" id="name" [(ngModel)]="vehicle.name" name="name">
+    </div>
+    <div class="form-group">
+        <label>Entry Time</label>
+        <input type="datetime-local" class="form-control" id="time" [(ngModel)]="vehicle.entryTime" name="time">
+    </div>
+    <button class="btn btn-success" type="submit">Update</button> &nbsp;
+    <button class="btn btn-secondary" type="button" (click)="cancelFunction()">Cancel</button>
+</form>
+</div>
+</div>
+</div>
+</div>

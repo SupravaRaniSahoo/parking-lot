@@ -1,0 +1,109 @@
+<div class="styles">
+<div class="sidebar" *ngIf="loginService.isLoggedIn()">
+  <a routerLink="/vehicles" routerLinkActive="active"><span><i class="fas fa-car" style="color: rgb(35, 182, 21);"></i></span> <strong>  Active Vehicles</strong></a>
+  <a routerLink="/add" routerLinkActive="active"><span><i class="fa fa-plus" style="color: rgb(35, 182, 21);"></i></span> <strong>  Add Vehicle</strong></a>
+  <a routerLink="/history" routerLinkActive="active"><span><i class="fa fa-history" style="color: rgb(35, 182, 21);"></i></span> <strong>  History</strong></a>
+</div>
+<div [ngClass]="isDarkTheme? 'dark-theme' : 'light-theme'">   
+  <div *ngIf="service.isLoading | async" class="loader-container">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div> 
+  <mat-card style="width:85%;float: right;">
+    <mat-card-content>   
+     <mat-slide-toggle (click)="toggleTheme()" style="float: right;"><strong>Dark Mode!</strong></mat-slide-toggle>
+
+     <!-- <div class="dropdown" style="float: right;width: 80px;margin-right: 2px;">
+      <button class="dropbtn">Filter data</button>
+      <div class="dropdown-content" [(ngModel)]="selectedOption" name="type" style="right: 0; left: auto;">
+         <p *ngFor="let o of options">{{o.name}}</p>
+      </div>
+    </div>  -->
+    
+    
+      <select [(ngModel)]="selectedOption" name="type" class="form-select form-select-sm" style="width: 100px;margin-top: 5px;float: right;margin-right: 2px;border-radius: 5px;"> 
+         <option selected>Filter Data</option>
+         <option *ngFor="let o of options">
+            {{o.name}}
+         </option>
+     </select>
+    
+
+<div class="form-group" style="float: right;width: 200px;margin-right: 2px;">
+  <input *ngIf="selectedOption == 'Search by Name'" type="search" class="form-control" name="name" [(ngModel)]="name" (ngModelChange)="searchByName()" placeholder="Search by Name">
+  <input *ngIf="selectedOption == 'Search by category'" type="search" class="form-control" name="category" [(ngModel)]="category" (ngModelChange)="searchByCategory()" placeholder="Search by category">
+  <!-- <input *ngIf="selectedOption == 'Search by Id'" type="search" class="form-control" name="filterId" [(ngModel)]="filterId" (ngModelChange)="searchById()" placeholder="Search by Id"> -->
+  <!-- <input *ngIf="selectedOption == 'Search by date'" type="search" class="form-control" name="filterDate" [(ngModel)]="filterDate" (ngModelChange)="searchByEntryTime()" placeholder="Search by Entry-time"> -->
+  <input *ngIf="selectedOption == 'Search by Status'" type="search" class="form-control" name="filterStatus" [(ngModel)]="filterStatus" (ngModelChange)="searchByStatus()" placeholder="Search by Status">
+</div>
+
+    <div *ngIf="alert" class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 1%;">
+        <strong>Success!</strong> Data has been deleted successfully.
+        <button (click)="closeAlert()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>   
+      
+    <div *ngIf="alertAdd" class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 1%;">
+        <strong>Success!</strong> Data has been added successfully.
+        <button (click)="closeAlertAdd()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>     
+
+<h2><b style="font-size: 27px;">Active Vehicles</b><span><p style="margin-left: 5px; font-size: medium;">Available Slots : 
+  <span class="badge" [class]="(slotColor=='success'? 'success':'warning') + ' ' + (slotColor=='danger'? 'danger':'')">{{activeRows}}</span></p></span>
+</h2>
+
+<!-- <ngb-rating [max]="5" [(ngModel)]="rating" [readonly]="false"></ngb-rating> -->
+
+  <table class="table table-striped" id="table">
+     <thead>
+          <tr>
+              <th [appSort]="vehicles" data-order="desc" data-name="parkingId">Vehicle ID</th>
+              <th [appSort]="vehicles" data-order="desc" data-name="category">Category</th> 
+              <th [appSort]="vehicles" data-order="desc" data-name="vehicleNumber">Vehicle Number</th>
+              <th [appSort]="vehicles" data-order="desc" data-name="name">Name</th> 
+              <th [appSort]="vehicles" data-order="desc" data-name="entryTime" data-type="date">Entry Time</th>
+              <th [appSort]="vehicles" data-order="desc" data-name="status">Status</th>
+              <th>Exit Time</th>
+              <th>Action</th> 
+          </tr>
+      </thead>
+      <tbody *ngFor="let vehicle of vehicles; let i = index">
+        <tr *ngIf="vehicles.length == 0">NO DATA TO SHOW...</tr>
+          <tr *ngIf="vehicle.status == 'ACTIVE'">
+               <td>{{i | number}}</td>
+               <td>{{vehicle.category | titlecase}}</td>
+               <td>{{vehicle.vehicleNumber}}</td>
+               <td>{{vehicle.name}}</td>
+               <td>{{vehicle.entryTime}}</td>
+               <td [ngClass]="getStatus == 'ACTIVE'? 'forActive': 'forInactive'"><strong>{{getStatus}}</strong></td>  
+                <!-- <td><cd-timer #basicTimer class="cd-timer" format="hms" [startTime]="0"></cd-timer></td> -->
+               <td><countdown #cd [ngModel]="countdown" name="countdown" ngDefaultControl [config]="config" (event)="handleEvent($event,vehicle.parkingId)"></countdown><br>
+                <button type="button" (click)="cd.begin()" (click)="startTime()" (click)="actionMethod($event)" style="font-size: 12px;border: none;"><i class="fas fa-play" style="color: rgb(16, 180, 16);"></i></button> &nbsp;
+                <button type="button" (click)="cd.stop()" (click)="stopTime(vehicle.parkingId)" (click)="actionMethod($event)" style="font-size: 12px;border: none;"><i class="fas fa-stop" style="color: rgb(245, 20, 20);"></i></button>
+              </td> 
+               <!-- <td><timer interval="1000">{{hours}} hour{{hourssS}}, {{minutes}} minute{{minutesS}}, {{seconds}} second{{secondsS}}</timer></td> -->
+               <!-- <td><cd-timer #basicTimer [autoStart]="false" class="bootstrap-timer" [startTime]="0" format="hms"></cd-timer><br>
+                <button type="button" class="btn btn-success" (click)="doActionBasicTimer('start')" style="font-size: 12px;padding: 0;padding-left: 2px;padding-right: 2px;">Start</button> &nbsp;
+                <button type="button" class="btn btn-danger" (click)="doActionBasicTimer('stop')" style="font-size: 12px;padding: 0;padding-left: 2px;padding-right: 2px;">Stop</button>
+              </td> -->
+               <td style='white-space: nowrap'> 
+                <button class="addMore" title="Edit" (click)="updateVehicle(vehicle.parkingId)" style="border-radius: 5px;"><strong><i class="fa fa-edit" style="padding: 5px 2px 5px 2px;"></i></strong></button>
+                <!-- <button class="addMore" title="Add" style="margin-left: 2px;border-radius: 5px;" (click)="saveVehiclesDetails(vehicle.parkingId)"><strong><i class="fa fa-plus" style="padding: 5px 2px 5px 2px;"></i></strong></button> -->
+                <!-- <button id="btnStart" class="btn btn-info" style="margin-left: 2px;" (click)="cd.begin()"><strong><i class="fa fa-clock-o" style="color: black;"></i></strong></button>
+                <button id="btnStop" class="btn btn-primary" style="margin-left: 2px;" (click)="cd.stop()"><strong><i class="fas fa-stop" style="color: black;"></i></strong></button> -->
+                <button class="addMore" title="Remove" (click)="deleteVehicle(vehicle.parkingId)"  style="margin-left: 2px;border-radius: 5px;"><strong><i class="fa fa-trash" style="padding: 5px 2px 5px 2px;"></i></strong></button>
+                <!-- <button id="btnRemove" class="btn btn-danger" style="margin-left: 2px;" (click)="deleteVehicle(vehicle.parkingId)"><strong>Remove</strong></button> -->
+                <button class="addMore" title="Invoice" (click)="viewVehicle(vehicle.parkingId)" style="margin-left: 2px;border-radius: 5px;"><strong><i class="fas fa-file-invoice" style="padding: 5px 2px 5px 2px;"></i></strong></button>
+               </td> 
+            </tr>
+         </tbody>
+       </table>  
+    </mat-card-content>
+   </mat-card>
+ </div>
+</div>
+  
+ 
+  

@@ -1,0 +1,61 @@
+<div class="container">
+	<div class="d-flex justify-content-center h-100">
+		<div class="card">
+			<div class="card-header">
+				<img src="../../assets/logo2.png" alt="logo">
+				<h3 style="font-size: 23px;">User Login</h3>
+			</div>
+			<div class="card-body">
+				<form class="form-group" (ngSubmit)="getDetails(credentials.username)">
+				    <div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+						<input type="text" [(ngModel)]="credentials.username" name="username" id="uName" class="form-control" placeholder="Enter Username">
+					</div>
+					<!-- <div *ngIf="uName.invalid && uName.dirty" class="alert alert-danger">
+						Name is required.
+					</div> -->
+
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-key"></i></span>
+						</div>
+						<input [type]="show ? 'text' : 'password'" [(ngModel)]="credentials.password" name="password" id="pwd" class="form-control" placeholder="Enter Password">
+						<div class="input-group-append">
+							<span class="input-group-text">
+							<i class="fa"
+							[ngClass]="{
+							  'fa-eye-slash': !fieldTextType,
+							  'fa-eye': fieldTextType
+							}" (click)="viewPassword()"></i>
+						</span>
+						</div>
+            		</div>
+					<!-- <div *ngIf="pwd.invalid && pwd.dirty" class="alert alert-danger">
+						Password is required.
+					</div> -->
+
+					<div class="row align-items-center remember">
+						<input type="checkbox">Remember Me
+					</div>
+					<div class="form-group" style="margin-top: 1%;">
+						<button class="btn float-right login_btn" style="font-size: 17px;">Login</button>
+					</div>
+				</form>
+				<div *ngIf="errorMessage!=null">
+					<span class="text-danger">{{errorMessage}}</span>
+				  </div>
+				  <div *ngIf="successMessage!=null">
+					<span class="text-success">{{successMessage}}</span>
+				</div>
+			</div>
+			<div class="card-footer">
+				<div class="d-flex justify-content-center links">
+					Don't have an account? <span style="color: rgb(146, 141, 141);"><a routerLink="/signup" routerLinkActive="active">SignUp</a></span>
+				</div>
+			</div>
+		</div>
+	</div>
+  </div>
+

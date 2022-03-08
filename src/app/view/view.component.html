@@ -1,0 +1,21 @@
+<div class="container">
+<button class="btn btn-success" (click)="backFunction()" style="float: right;margin-top: 2%;"><< &nbsp;Back</button>
+<div class="col d-flex justify-content-center" style="margin-top: 4%;">
+<mat-card>   
+  <mat-card-title><h2>View Vehicle Details</h2></mat-card-title>
+  <hr>
+    <mat-card-content>
+      <!-- <ag-grid-angular style="width: 100%; height: 450px;" class="ag-theme-material"> -->
+      <div><label><b>Vehicle ID: &nbsp;</b></label><span>{{vehicle.parkingId}}</span></div>
+      <div><label><b>Category: &nbsp;</b></label><span>{{vehicle.category}}</span></div>
+      <div><label><b>Vehicle Number: &nbsp;</b></label><span>{{vehicle.vehicleNumber}}</span></div>
+      <div><label><b>UserName: &nbsp;</b></label><span>{{vehicle.name}}</span></div>
+      <div><label><b>Entry Time: &nbsp;</b></label><span>{{vehicle.entryTime}}</span></div>
+      <div><label><b>Duration: &nbsp;</b></label><span>{{getDifferenceInTime(vehicle.parkingId)}}</span></div>
+      <div><label><b>Total Price: &nbsp;</b></label><span>{{getPrice(getDifferenceInTime(vehicle.parkingId),vehicle.parkingId)}}</span></div>
+      <a href="../invoice/invoice.component.html" download><button class="btn btn-info float-right">Download Invoice</button></a>
+      <!-- </ag-grid-angular> -->
+  </mat-card-content>
+ </mat-card>
+</div>
+</div>

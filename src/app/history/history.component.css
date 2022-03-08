@@ -1,0 +1,53 @@
+.button{
+    position: absolute;
+    top: 8%;
+    left: 1430px;
+    font-size: 13px;
+    padding: 3px;
+    margin-top: 2%;
+}
+/* .ag-row-hover {
+     putting in !important so it overrides the theme's styling as it hovers the row also 
+    background-color: #dfdfff !important;
+}
+
+.ag-column-hover {
+    background-color: #dfffdf;
+} */
+
+ag-grid-angular{
+    font-size: 14px;
+    margin-top: 0.5%;
+    padding: 15px;
+}
+
+.forRed{
+   border: 3px solid #E9967A;
+}
+
+.forGreen{
+   border: 3px solid #3cb371; 
+}
+
+  .option {
+    display: block;
+    margin: 0px 2px 0px 0;
+  }
+  .grid-wrapper {
+    display: flex;
+    flex: 1 1 0px;
+  }
+  .grid-wrapper > div {
+    width: 100%;
+    height: 100%;
+  }
+  .container-fluid {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .columns {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }

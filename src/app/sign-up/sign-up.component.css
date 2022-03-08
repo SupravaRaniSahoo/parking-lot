@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css?family=Numans');
+
+.container{
+margin-top: 6%;    
+height: 100%;
+align-content: center;
+}
+
+.card{
+height: 440px;
+margin-top: auto;
+margin-bottom: auto;
+width: 400px;
+background-color: rgba(0,0,0,0.5) !important;
+-webkit-box-shadow: 10px 11px 20px 4px rgba(0,0,0,0.72);
+-moz-box-shadow: 10px 11px 20px 4px rgba(0,0,0,0.72);
+box-shadow: 10px 11px 20px 4px rgba(0,0,0,0.72);
+}
+
+/* .card-header{
+   
+} */
+
+.card-header h3{
+color: white;
+align-content: center;  
+}
+
+
+.input-group-prepend span{
+width: 50px;
+background-color: #FFC312;
+color: black;
+border:0 !important;
+}
+
+input:focus{
+outline: 0 0 0 0  !important;
+box-shadow: 0 0 0 0 !important;
+
+}
+
+.remember{
+color: white;
+}
+
+.remember input
+{
+width: 20px;
+height: 20px;
+margin-left: 15px;
+margin-right: 5px;
+}
+
+.login_btn{
+color: black;
+background-color: #03b90c;
+width: 100px;
+}
+
+.login_btn:hover{
+color: black;
+background-color: white;
+}
+
+.links{
+color: white;
+}
+
+.links a{
+margin-left: 4px;
+}
+
+img {
+    height: 50px;
+    width: 50px;
+    align-items: center;
+    border-radius: 50%;
+  }
+

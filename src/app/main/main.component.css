@@ -1,0 +1,134 @@
+html, body {margin: 0px; padding: 0px; width: 100%; height: 100%;}
+.wrapper {
+  margin: 0 auto;
+  width: 96%;
+  box-shadow: 0 40px 60px -6px rgb(26, 25, 25);
+}
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+.second{
+  position: absolute;
+    top: 40%;
+    left: 60%;
+    transform: translate(-40%, -60%);
+}  
+.carousel-item img {width: 100%; height: 300px;}
+
+.cssmarquee {
+  height: 40px;
+  overflow: hidden;
+  position: relative;
+  }
+  .cssmarquee h1 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  color: rgb(188, 235, 230);
+  margin: 0;
+  line-height: 50px;
+  text-align: center;
+  /* Starting position */
+  transform:translateX(-100%);
+  animation: cssmarquee 25s linear infinite;
+  }
+  @keyframes cssmarquee {
+  0% {
+  transform: translateX(-100%);
+  }
+  100% {
+  transform: translateX(100%);
+  }
+  }
+
+  /* .btnMore{
+    position: absolute;top: 85%;left: 15%;transform: translate(-85%, -15%); border: 2px solid red;
+    background:  transparent;
+     height:  38px;
+     line-height:  40px;
+     border:  2px solid white;
+     display:  inline-block;
+     float:  none;
+     text-align:  center;
+     width:  120px;
+     padding:  0px!important;
+     font-size:  14px;
+     color:  #fff;
+  } */
+
+  button:hover{
+    color: rgb(20, 50, 148);
+    border: 2px solid black;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .cards {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .card {
+    margin: 27px;
+    position: relative;
+    max-width: 250px;
+    max-height: 250px;
+    box-shadow: 0 40px 60px -6px black;
+  }
+  
+  .card-title {
+    display: block;
+    text-align: center;
+    color: #fff;
+    background-color: #2a73bd;
+    padding: 2%;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+  }
+  
+  .card img {
+    width: 100%;
+    height: 76%;
+    object-fit: cover;
+    display: block;
+    position: relative;
+  }
+  
+  .card-desc {
+    display: block;
+    font-size: 1.1rem;
+    position: absolute;
+    height: 0;
+    top: 0;
+    text-align: center;
+    opacity: 0;
+    padding: 18px 8%;
+    /* background-color: rgb(228, 135, 135); */
+    background-color: rgba(241, 134, 134, 0.822);
+    /* overflow-y: scroll; */
+    transition: 0.8s ease;
+  }
+  
+  .card:hover .card-desc {
+    opacity: 1;
+    height: 100%;
+  }
+
+  .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(39, 40, 41, 0.897);
+    color: white;
+    text-align: center;
+ }

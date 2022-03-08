@@ -1,0 +1,9 @@
+.card{
+    -webkit-box-shadow: 8px 9px 12px 4px rgba(27, 27, 27, 0.72);
+    -moz-box-shadow: 8px 9px 12px 4px rgba(27, 27, 27, 0.72);
+    box-shadow: 8px 9px 12px 4px rgba(27, 27, 27, 0.72);
+    }
+
+label{
+    font-weight: 500;
+}    

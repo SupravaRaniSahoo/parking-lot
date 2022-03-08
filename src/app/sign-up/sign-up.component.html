@@ -1,0 +1,81 @@
+<div *ngIf="alert" class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 1%;align-content: center;width: 200px;">
+    <strong>Success!</strong> Data has been added successfully.
+    <button (click)="closeAlert()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>   
+<div class="container">
+	<div class="d-flex justify-content-center h-100"> 
+		<div class="card">
+			<div class="card-header">
+				<img src="../../assets/logo2.png" alt="logo">
+				<h3 style="font-size: 23px;">SignUp</h3>
+			</div>
+			<div class="card-body">
+				<form class="form-group" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+				    <div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+						<input type="text" [(ngModel)]="details.userName" formControlName="userName" name="userName" id="userName" class="form-control" placeholder="Enter Username" />  
+					</div>
+                    <div *ngIf="f['userName'].dirty && f['userName'].invalid" class="alert alert-danger">
+                        <div *ngIf="f['userName'].errors && f['userName'].errors['required']">This field is required</div>
+                    </div>  
+                    
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-key"></i></span>
+						</div>
+						<input [type]="show ? 'text' : 'password'" [(ngModel)]="details.password" formControlName="password" name="password" id="password" class="form-control" placeholder="Enter Password" />
+						<div class="input-group-append">
+							<span class="input-group-text">
+							<i class="fa"
+							[ngClass]="{
+							  'fa-eye-slash': !fieldTextType,
+							  'fa-eye': fieldTextType
+							}" (click)="viewPassword()"></i>
+						</span>
+						</div>  
+            		</div>
+                    <div *ngIf="f['password'].dirty && f['password'].invalid" class="alert alert-danger">
+                        <div *ngIf="f['password'].errors && f['password'].errors['required']">This field is required</div>
+                    </div>  
+
+                    <div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-key"></i></span>
+						</div>
+						<input [type]="show ? 'text' : 'password'" formControlName="confirm_password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm Password" />
+						<div class="input-group-append">
+							<span class="input-group-text">
+							<i class="fa"
+							[ngClass]="{
+							  'fa-eye-slash': !fieldTextType,
+							  'fa-eye': fieldTextType
+							}" (click)="viewPassword()"></i>
+						</span>
+						</div>  
+            		</div>
+                    <div *ngIf="f['confirm_password'].dirty && f['confirm_password'].invalid" class="alert alert-danger">
+                        <div *ngIf="f['confirm_password'].errors && f['confirm_password'].errors['required']">This field is required</div>
+                        <!-- <div *ngIf="f['confirm_password'].errors['matching']">Password and Confirm Password must be match.</div> -->
+                    </div>
+
+					<div class="row align-items-center remember">
+						<input type="checkbox">Remember Me
+					</div>
+					<div class="form-group" style="margin-top: 1%;">
+						<button type="submit" class="btn float-right login_btn" style="font-size: 17px;" [disabled]="!registrationForm.valid">SignUp</button>
+					</div>
+				</form>
+			</div>
+			<div class="card-footer">
+				<div class="d-flex justify-content-center links">
+					Already have an account. <span><a routerLink="/login-user" routerLinkActive="active">Login</a></span>
+				</div>
+			</div>
+		</div>
+	</div>
+  </div>
+
