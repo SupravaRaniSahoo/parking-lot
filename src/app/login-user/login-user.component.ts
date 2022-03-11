@@ -80,5 +80,8 @@ export class LoginUserComponent implements OnInit {
   //   this.router.navigate(['search', sessionStorage.getItem('name')]);
   // }
  
+  restForm(){
+    (<HTMLFormElement>document.getElementById("login")).reset();
+  }
 
 }

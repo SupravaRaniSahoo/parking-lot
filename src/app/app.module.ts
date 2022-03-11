@@ -53,7 +53,7 @@ import {MessageModule} from 'primeng/message';
 import {PanelModule} from 'primeng/panel';
 import {TableModule} from 'primeng/table';
 import { NgxSpinner, NgxSpinnerModule } from 'ngx-spinner';
-import { AuthInterceptor } from './auth.interceptor';
+import { AuthInterceptor, authInterceptorProviders } from './auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -111,7 +111,7 @@ import { AuthInterceptor } from './auth.interceptor';
     PanelModule,
     AgGridModule.withComponents([CustomizedCellComponent])
   ],
-  providers: [DatePipe, {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true},{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}, CustomizedCellComponent],
+  providers: [DatePipe, {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}, authInterceptorProviders, CustomizedCellComponent],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

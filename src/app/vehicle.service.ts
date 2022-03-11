@@ -42,11 +42,13 @@ export class VehicleService {
 
   private getLogin = "http://localhost:8080/login/getLogin";
 
+  private anyUrl = "http://localhost:8080/getSomeVehicle";
+
   
   constructor(private http: HttpClient) { }
 
   getVehicleList(): Observable<Vehicle[]>{
-    return this.http.get<Vehicle[]>(`${this.getURL}`);
+    return this.http.get<Vehicle[]>(`${this.anyUrl}`);
   }
 
   getAllRole(): Observable<Role[]>{

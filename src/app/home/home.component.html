@@ -76,7 +76,7 @@
                <td>{{vehicle.category | titlecase}}</td>
                <td>{{vehicle.vehicleNumber}}</td>
                <td>{{vehicle.name}}</td>
-               <td>{{vehicle.entryTime}}</td>
+               <td>{{vehicle.entryTime | date:'medium'}}</td>
                <td [ngClass]="getStatus == 'ACTIVE'? 'forActive': 'forInactive'"><strong>{{getStatus}}</strong></td>  
                 <!-- <td><cd-timer #basicTimer class="cd-timer" format="hms" [startTime]="0"></cd-timer></td> -->
                <td><countdown #cd [ngModel]="countdown" name="countdown" ngDefaultControl [config]="config" (event)="handleEvent($event,vehicle.parkingId)"></countdown><br>

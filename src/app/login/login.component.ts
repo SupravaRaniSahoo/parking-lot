@@ -52,7 +52,8 @@ export class LoginComponent implements OnInit {
          console.log(response.token);
          this.auth.loginUser(response.token);
          sessionStorage.setItem("uname", this.credentials.username);
-         window.location.href = "/vehicles";
+        //  window.location.href = "/vehicles";
+        this.goToVehicleList();
       },
       // error =>{
 
@@ -66,6 +67,10 @@ export class LoginComponent implements OnInit {
 
   goToVehicleList(){
     this.router.navigate(['/vehicles']);
+  }
+
+  restForm(){
+    (<HTMLFormElement>document.getElementById("Login")).reset();
   }
 
 }

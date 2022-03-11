@@ -11,7 +11,7 @@
 				</div>
 			</div>
 			<div class="card-body">
-				<form class="form" (ngSubmit)="onSubmit()">
+				<form id="Login"  (ngSubmit)="onSubmit()">
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -46,8 +46,10 @@
 					<div class="row align-items-center remember">
 						<input type="checkbox">Remember Me
 					</div>
-					<div class="form-group" style="margin-top: 9%;">
-						<button type="submit" class="btn float-right login_btn" style="font-size: 17px;">Login</button>
+					<!-- <div class="form-group" style="margin-top: 9%;"> -->
+					<div class="btn-group" style="margin-top: 9%;">
+						<button type="submit" class="btn float-right btn-sm login_btn" style="font-size: 14px;width: 100%;border-radius: 2px;">Login</button>
+						<button type="reset" class="btn float-right btn-sm login_btn" style="font-size: 14px;margin-left: 10%;width: 100%;background-color: #a09a87;border-radius: 2px;" (click)="restForm()">Reset</button>
 					</div>
 				</form>
 
